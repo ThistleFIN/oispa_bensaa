@@ -78,11 +78,17 @@ export default {
         document.getElementById('car').remove();
         document.getElementById('remove-style').remove();
       }
+      if(document.getElementById('stop')) {
+        document.getElementById('stop').remove();
+        document.getElementById('remove-cat-style').remove();
+      }
       var results_1 = parseFloat(document.getElementById("results_1").innerText);
       var results_2 = parseFloat(document.getElementById("results_2").innerText);
-      console.log(results_1)
-      console.log(results_2)
-
+      var speed_1 = parseFloat(document.getElementById("speed_input_1").value);
+      var speed_2 = parseFloat(document.getElementById("speed_input_2").value);
+      console.log((speed_1))
+      console.log((speed_2))
+      //car animation
       var div = document.createElement('div');
       div.setAttribute("id", "car");
       var img = document.createElement('img');
@@ -105,7 +111,28 @@ export default {
 
       var ref = document.querySelector('script');
 
-      if(results_1 < results_2) {
+      //Epsu animation
+      var div2 = document.createElement('div');
+      div2.setAttribute("id", "stop");
+      var img2 = document.createElement('img');
+      img2.src = "data:image/png;base64,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";
+      img2.id = "stop_img";
+      img2.alt = "Stop!";
+
+      // Create our stylesheet
+      var style2 = document.createElement('style');
+      style2.id = "remove-cat-style";
+      style2.innerHTML =
+          "#stop_img { position: absolute;top: 750px;-webkit-animation: linear;-webkit-animation-name: run2;-webkit-animation-duration: 8s;}"+
+          "@-webkit-keyframes run2 {"+
+          "0% {right: 0;} 15% {right: calc(20% - 100px);}"+
+          "48% {right: calc(20% - 100px);} 50% {right: calc(20% - 100px);}"+
+          "55%{right: calc(30% - 100px);}"+
+          "100% {right: 110%;} };"
+
+      var ref2 = document.querySelector('script');
+
+      if( speed_1 > 0 && speed_2 > 0 && results_1 < results_2) {
         document.getElementById("results_1").style.color = "#c9263f";
         document.getElementById("results_2").style.color = "black";
         document.getElementById("cash").style.display = "none";
@@ -115,14 +142,24 @@ export default {
         document.getElementById('price').innerText = results_1.toFixed(2);
         document.getElementById('here').appendChild(div);
         document.getElementById('car').appendChild(img);
+
         ref.parentNode.insertBefore(style, ref);
+        if(speed_1 > 120 || speed_2 > 120){
+          document.getElementById('here2').appendChild(div2);
+          document.getElementById('stop').appendChild(img2);
+          ref2.parentNode.insertBefore(style2, ref2);
+        }
         setTimeout(function(){
           if(document.getElementById('car')) {
             document.getElementById('car').remove();
             document.getElementById('remove-style').remove();
           }
+          if(document.getElementById('stop')) {
+            document.getElementById('stop').remove();
+            document.getElementById('remove-cat-style').remove();
+          }
         },8000);
-      }else if (results_1 > results_2){
+      }else if ( speed_1 > 0 && speed_2 > 0 && results_1 > results_2){
         document.getElementById("results_2").style.color = "#c9263f";
         document.getElementById("results_1").style.color = "black";
         document.getElementById("cash").style.display = "block";
@@ -132,10 +169,19 @@ export default {
         document.getElementById('here').appendChild(div);
         document.getElementById('car').appendChild(img);
         ref.parentNode.insertBefore(style, ref);
+        if(speed_1 > 120 || speed_2 > 120){
+          document.getElementById('here2').appendChild(div2);
+          document.getElementById('stop').appendChild(img2);
+          ref2.parentNode.insertBefore(style2, ref2);
+        }
         setTimeout(function(){
           if(document.getElementById('car')) {
             document.getElementById('car').remove();
             document.getElementById('remove-style').remove();
+          }
+          if(document.getElementById('stop')) {
+            document.getElementById('stop').remove();
+            document.getElementById('remove-cat-style').remove();
           }
         },8000);
       } else {
