@@ -21,10 +21,8 @@
 
 --------------------------------------------------------------------
     </pre>
-    <div id="here">
-    </div>
-    <div id="here2">
-    </div>
+    <div id="here2" class="canvas"></div>
+    <div id="here" class="canvas"></div>
 
   </div>
 </template>
@@ -45,5 +43,8 @@ export default {
     justify-content: center;
     color: #c9263f;
     font-weight: bolder;
+  }
+  .canvas{
+    overflow-x: hidden;
   }
 </style>

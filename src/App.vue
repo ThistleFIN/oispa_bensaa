@@ -44,6 +44,7 @@ body{
   position: fixed;
   left: 20px;
   bottom: 20px;
+  z-index: 3;
 }
 .linkedin{
   font-size: 3em;
@@ -70,7 +71,7 @@ body{
 
 .wrap{
   max-width: 1200px;
-  height: 520px;
+  height: 550px;
   margin: 0 auto;
 }
 

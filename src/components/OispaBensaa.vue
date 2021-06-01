@@ -5,18 +5,18 @@
       <section class="form">
         <h3> Valitse autosi bensan kulutus </h3>
         <div class="gas-container">
-          <input type="radio" name="form.gas_button" id="3" value="3" v-model="form.gas_button">
+          <input type="radio" name="form.gas_button" id="3" value="3" v-model="form.gas_button" @change="onChange($event)">
           <label class="gas" for="3">3 l / 100km</label>
-          <input type="radio" name="form.gas_button" id="3.5" value="3.5" v-model="form.gas_button">
+          <input type="radio" name="form.gas_button" id="3.5" value="3.5" v-model="form.gas_button" @change="onChange($event)">
           <label class="gas" for="3.5">3,5 l / 100km</label>
-          <input type="radio" name="form.gas_button" id="4" value="4" v-model="form.gas_button">
+          <input type="radio" name="form.gas_button" id="4" value="4" v-model="form.gas_button" @change="onChange($event)">
           <label class="gas" for="4">4 l / 100km</label>
         </div>
 
         <div class="travel-container">
           <p> Matkan pituus? (km) </p>
           <div class="number-input">
-            <input id="travel_input" class="quantity" type="number" min="0" v-model="form.travel_input">
+            <input id="travel_input" class="quantity" type="number" min="0" value="0" v-model="form.travel_input" @change="onChange($event)">
           </div>
 
         </div>
@@ -29,8 +29,23 @@
               <input id="speed_input_1" class="quantity" type="number" min="0" v-model="form.speed_input_1" @change="onChange($event)">
             </div>
 
-            <div class="results" id="results_1">
-              {{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_1))).toFixed(2) }}
+            <div class="results">
+              <div class="full">
+                <div class="half">
+                  <p class="result_text">Matka-aika</p>
+                </div>
+                <div class="half">
+                  <p class="result_answer" id="time_1">{{ Math.floor(form.travel_input / form.speed_input_1 || 0) }} h {{ Math.floor(((form.travel_input % form.speed_input_1) / form.speed_input_1) * 60 || 0) }} min</p>
+                </div>
+              </div>
+              <div class="full">
+                <div class="half">
+                  <p class="result_text">Bensankulutus</p>
+                </div>
+                <div class="half">
+                  <p class="result_answer" id="results_1">{{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_1))).toFixed(2) }} l</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -45,8 +60,23 @@
             <div class="number-input">
               <input id="speed_input_2" class="quantity" type="number" min="0"  value= "0" v-model="form.speed_input_2" @change="onChange($event)">
             </div>
-            <div class="results" id="results_2">
-              {{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_2))).toFixed(2) }}
+            <div class="results">
+              <div class="full">
+                <div class="half">
+                  <p class="result_text">Matka-aika</p>
+                </div>
+                <div class="half">
+                  <p class="result_answer" id="time_2">{{ Math.floor(form.travel_input / form.speed_input_2 || 0) }} h {{ Math.floor(((form.travel_input % form.speed_input_2) / form.speed_input_2) * 60 || 0) }} min</p>
+                </div>
+              </div>
+              <div class="full">
+                <div class="half">
+                  <p class="result_text">Bensankulutus</p>
+                </div>
+                <div class="half">
+                  <p class="result_answer" id="results_2">{{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_2))).toFixed(2) }} l</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -86,28 +116,28 @@ export default {
       var results_2 = parseFloat(document.getElementById("results_2").innerText);
       var speed_1 = parseFloat(document.getElementById("speed_input_1").value);
       var speed_2 = parseFloat(document.getElementById("speed_input_2").value);
-      console.log((speed_1))
-      console.log((speed_2))
-      //car animation
+
+      // Car animation
       var div = document.createElement('div');
       div.setAttribute("id", "car");
       var img = document.createElement('img');
-      img.src = "/img/Solidabis_car.a95dd923.png";
+      img.src = "/img/Solidabis_car.14e1bd36.png";
       img.id = "remove-img";
       img.alt = "Solidabis car";
-      img.style.width = "300px";
+      img.style.width = "500px";
       img.style.height = "auto";
+      img.style.zIndex = "2";
 
       // Create our stylesheet
       var style = document.createElement('style');
       style.id = "remove-style";
       style.innerHTML =
-          "#car {top: 850px;position: absolute;-webkit-animation: linear;-webkit-animation-name: run;-webkit-animation-duration: 8s;}" +
-          "@-webkit-keyframes run {0% {left: 0;}" +
-          "48% {left: calc(40%);-webkit-transform: rotateY(0deg);}" +
-          "50% {left: calc(40%); -webkit-transform: rotateY(180deg);}" +
-          "60% {left: calc(40%);}" +
-          "100% {left: -600px;-webkit-transform: rotateY(180deg);}";
+          "#car {top: 880px;position: absolute;-webkit-animation: linear;-webkit-animation-name: run;-webkit-animation-duration: 8s;}" +
+          "@-webkit-keyframes run {0% {left: -600px;}" +
+          "48% {left: calc(30%);-webkit-transform: rotateY(0deg);}" +
+          "50% {left: calc(30%); -webkit-transform: rotateY(180deg);}" +
+          "60% {left: calc(30%);}" +
+          "100% {left: -1200px;-webkit-transform: rotateY(180deg);}";
 
       var ref = document.querySelector('script');
 
@@ -123,7 +153,7 @@ export default {
       var style2 = document.createElement('style');
       style2.id = "remove-cat-style";
       style2.innerHTML =
-          "#stop_img { position: absolute;top: 750px;-webkit-animation: linear;-webkit-animation-name: run2;-webkit-animation-duration: 8s;}"+
+          "#stop_img { position: absolute;top: 780px;-webkit-animation: linear;-webkit-animation-name: run2;-webkit-animation-duration: 8s;}"+
           "@-webkit-keyframes run2 {"+
           "0% {right: 0;} 15% {right: calc(20% - 100px);}"+
           "48% {right: calc(20% - 100px);} 50% {right: calc(20% - 100px);}"+
@@ -135,20 +165,23 @@ export default {
       if( speed_1 > 0 && speed_2 > 0 && results_1 < results_2) {
         document.getElementById("results_1").style.color = "#c9263f";
         document.getElementById("results_2").style.color = "black";
+        document.getElementById("time_1").style.color = "black";
+        document.getElementById("time_2").style.color = "#c9263f";
+
         document.getElementById("cash").style.display = "none";
         document.getElementById("time").style.display = "block";
         document.getElementById("nan").style.display = "none";
 
-        document.getElementById('price').innerText = results_1.toFixed(2);
-        document.getElementById('here').appendChild(div);
-        document.getElementById('car').appendChild(img);
-
-        ref.parentNode.insertBefore(style, ref);
         if(speed_1 > 120 || speed_2 > 120){
           document.getElementById('here2').appendChild(div2);
           document.getElementById('stop').appendChild(img2);
           ref2.parentNode.insertBefore(style2, ref2);
         }
+        document.getElementById('price').innerText = results_1.toFixed(2);
+        document.getElementById('here').appendChild(div);
+
+        document.getElementById('car').appendChild(img);
+        ref.parentNode.insertBefore(style, ref);
         setTimeout(function(){
           if(document.getElementById('car')) {
             document.getElementById('car').remove();
@@ -160,20 +193,24 @@ export default {
           }
         },8000);
       }else if ( speed_1 > 0 && speed_2 > 0 && results_1 > results_2){
-        document.getElementById("results_2").style.color = "#c9263f";
         document.getElementById("results_1").style.color = "black";
+        document.getElementById("results_2").style.color = "#c9263f";
+        document.getElementById("time_1").style.color = "#c9263f";
+        document.getElementById("time_2").style.color = "black";
+
         document.getElementById("cash").style.display = "block";
         document.getElementById("time").style.display = "none";
         document.getElementById("nan").style.display = "none";
-        document.getElementById('price').innerText = results_2.toFixed(2);
-        document.getElementById('here').appendChild(div);
-        document.getElementById('car').appendChild(img);
-        ref.parentNode.insertBefore(style, ref);
+
         if(speed_1 > 120 || speed_2 > 120){
           document.getElementById('here2').appendChild(div2);
           document.getElementById('stop').appendChild(img2);
           ref2.parentNode.insertBefore(style2, ref2);
         }
+        document.getElementById('price').innerText = results_2.toFixed(2);
+        document.getElementById('here').appendChild(div);
+        document.getElementById('car').appendChild(img);
+        ref.parentNode.insertBefore(style, ref);
         setTimeout(function(){
           if(document.getElementById('car')) {
             document.getElementById('car').remove();
@@ -187,6 +224,9 @@ export default {
       } else {
         document.getElementById("results_1").style.color = "black";
         document.getElementById("results_2").style.color = "black";
+        document.getElementById("time_1").style.color = "black";
+        document.getElementById("time_2").style.color = "black";
+
         document.getElementById("cash").style.display = "none";
         document.getElementById("time").style.display = "none";
         document.getElementById("nan").style.display = "block";
@@ -216,7 +256,7 @@ h3 {
   background-color: #c9263f;
   color: white;
   font-weight: bolder;
-  margin: 20px;
+  margin: 0 20px;
   width: 100px;
 }
 
@@ -266,10 +306,51 @@ h1 {
   flex-direction: row;
   margin: 0 auto;
 }
+.results{
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.result_text{
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+  color: #c9263f;
+}
+
+@media(min-width: 600px){
+  .result_answer {
+    padding-top: 12px;
+  }
+}
+
+.result_answer{
+  font-size: 20px;
+  text-align: left;
+  margin: 0;
+}
+.full{
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+}
 .third {
   width: 33%;
 }
+
+.half {
+  width: 50%;
+}
+@media (max-width: 500px) {
+  .full{
+    flex-direction: column;
+  }
+  .half {
+    width: 100%;
+  }
+}
+
+
 input[type="number"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
@@ -307,19 +388,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .number-input input[type=number] {
   font-family: sans-serif;
-  max-width: 5rem;
-  padding: .5rem;
-  border: solid #ddd;
-  border-width: 0 2px;
-  font-size: 1.2rem;
-  height: 3rem;
+  max-width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  height: 30px;
   font-weight: bold;
   text-align: center;
-}
-
-.results{
-  margin-top: 30px;
-  font-size: 2rem;
 }
 
 </style>

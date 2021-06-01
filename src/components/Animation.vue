@@ -30,7 +30,7 @@ img{
     -webkit-transform: rotateY(0deg);
   }
   50% {
-    left: calc(100% - 100px);
+    left: calc(100% - 127px);
     -webkit-transform: rotateY(180deg);
   }
   98% {
