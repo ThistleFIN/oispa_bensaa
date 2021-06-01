@@ -21,3 +21,5 @@ Projekti toimi itselleni harjoitusprojektina Vue.js:stä, css-animoinnista, piks
 ## Käytettyjä resursseja
 - Solidabiksen koodihaasteen 2021 kuvia - https://koodihaaste.solidabis.com/#/
 - Jörgen Gröner - Fillingstation Ascii Art - https://ascii.co.uk/art/fillingstation
+
+![Delta ajaa](https://oispabensaa.takiainen.fi/img/Solidabis_car.14e1bd36.png)
