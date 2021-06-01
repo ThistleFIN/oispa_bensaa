@@ -1,7 +1,7 @@
 # oispa_bensaa
 
 ## Kuvaus
-Projekti on pystyssä osoitteessa: https://oispabensaa.takiainen.fi/. Ideana on autoilumittari, joka vertailee polttoaineenkulutuksia ja nopeuksia tietyn matkan aikana kahdella eri nopeudella. Sivua on koristeltu muutamalla eri animaatiolla, jotka tulevat esiin kun tietyt ehdot kohtaavat.
+Projekti on pystyssä osoitteessa: https://oispabensaa.takiainen.fi/. Ideana on autoilumittari, joka vertailee polttoaineenkulutuksia ja nopeuksia tietyn matkan aikana kahdella eri nopeudella. Sivua on koristeltu muutamalla eri animaatiolla, jotka tulevat esiin kun tietyt ehdot kohtaavat. Muistathan että Suomessa maksimi sallittu nopeus on 120 km/h!
 
 
 ## Projektin pystytys omalla koneella
