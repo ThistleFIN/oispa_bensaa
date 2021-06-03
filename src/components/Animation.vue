@@ -11,10 +11,11 @@ export default {
 </script>
 
 <style scoped>
-img{
+img {
   max-height: 40px;
   width: auto;
 }
+
 #pot {
   top: 15px;
   position: absolute;
@@ -22,6 +23,7 @@ img{
   -webkit-animation-name: run;
   -webkit-animation-duration: 10s;
 }
+
 @-webkit-keyframes run {
   0% {
     left: 0;

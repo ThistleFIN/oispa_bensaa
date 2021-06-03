@@ -9,7 +9,7 @@
                 | ||                                  | ||
                 | ||          _________       ___     | ||
                 | ||        / _______ /|     /__/|    | ||
-                | ||       | <var id="price">42 </var>l   | |    |   ||    | ||
+                | ||       | <var id="price">42  </var>l   | |    |   ||    | ||
 ================| ||=======|_________|/=====|___|/====| ||============
                 | ||         |     | |       | ||     | ||
           .-----| ||---------|  *  | |-------| ||-----| ||----.
@@ -37,14 +37,15 @@ export default {
 </script>
 
 <style scoped>
-  .ascii{
-    text-align: left;
-    display: flex;
-    justify-content: center;
-    color: #c9263f;
-    font-weight: bolder;
-  }
-  .canvas{
-    overflow-x: hidden;
-  }
+.ascii {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  color: #c9263f;
+  font-weight: bolder;
+}
+
+.canvas {
+  overflow-x: hidden;
+}
 </style>

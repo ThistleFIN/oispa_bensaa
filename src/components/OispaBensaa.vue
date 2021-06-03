@@ -5,18 +5,22 @@
       <section class="form">
         <h3> Valitse autosi bensan kulutus </h3>
         <div class="gas-container">
-          <input type="radio" name="form.gas_button" id="3" value="3" v-model="form.gas_button" @change="onChange($event)">
+          <input type="radio" name="form.gas_button" id="3" value="3" v-model="form.gas_button"
+                 @change="onChange($event)">
           <label class="gas" for="3">3 l / 100km</label>
-          <input type="radio" name="form.gas_button" id="3.5" value="3.5" v-model="form.gas_button" @change="onChange($event)">
+          <input type="radio" name="form.gas_button" id="3.5" value="3.5" v-model="form.gas_button"
+                 @change="onChange($event)">
           <label class="gas" for="3.5">3,5 l / 100km</label>
-          <input type="radio" name="form.gas_button" id="4" value="4" v-model="form.gas_button" @change="onChange($event)">
+          <input type="radio" name="form.gas_button" id="4" value="4" v-model="form.gas_button"
+                 @change="onChange($event)">
           <label class="gas" for="4">4 l / 100km</label>
         </div>
 
         <div class="travel-container">
           <p> Matkan pituus? (km) </p>
           <div class="number-input">
-            <input id="travel_input" class="quantity" type="number" min="0" value="0" v-model="form.travel_input" @change="onChange($event)">
+            <input id="travel_input" class="quantity" type="number" min="0" value="0" v-model="form.travel_input"
+                   @change="onChange($event)">
           </div>
 
         </div>
@@ -26,7 +30,8 @@
           <div class="third">
             <p> Nopeus 1 (km/h) </p>
             <div class="number-input">
-              <input id="speed_input_1" class="quantity" type="number" min="0" v-model="form.speed_input_1" @change="onChange($event)">
+              <input id="speed_input_1" class="quantity" type="number" min="0" v-model="form.speed_input_1"
+                     @change="onChange($event)">
             </div>
 
             <div class="results">
@@ -35,7 +40,8 @@
                   <p class="result_text">Matka-aika</p>
                 </div>
                 <div class="half">
-                  <p class="result_answer" id="time_1">{{ Math.floor(form.travel_input / form.speed_input_1 || 0) }} h {{ Math.floor(((form.travel_input % form.speed_input_1) / form.speed_input_1) * 60 || 0) }} min</p>
+                  <p class="result_answer" id="time_1">{{ Math.floor(form.travel_input / form.speed_input_1 || 0) }} h
+                    {{ Math.floor(((form.travel_input % form.speed_input_1) / form.speed_input_1) * 60 || 0) }} min</p>
                 </div>
               </div>
               <div class="full">
@@ -43,7 +49,8 @@
                   <p class="result_text">Bensankulutus</p>
                 </div>
                 <div class="half">
-                  <p class="result_answer" id="results_1">{{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_1))).toFixed(2) }} l</p>
+                  <p class="result_answer" id="results_1">
+                    {{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_1))).toFixed(2) }} l</p>
                 </div>
               </div>
             </div>
@@ -58,7 +65,8 @@
           <div class="third">
             <p> Nopeus 2 (km/h) </p>
             <div class="number-input">
-              <input id="speed_input_2" class="quantity" type="number" min="0"  value= "0" v-model="form.speed_input_2" @change="onChange($event)">
+              <input id="speed_input_2" class="quantity" type="number" min="0" value="0" v-model="form.speed_input_2"
+                     @change="onChange($event)">
             </div>
             <div class="results">
               <div class="full">
@@ -66,7 +74,8 @@
                   <p class="result_text">Matka-aika</p>
                 </div>
                 <div class="half">
-                  <p class="result_answer" id="time_2">{{ Math.floor(form.travel_input / form.speed_input_2 || 0) }} h {{ Math.floor(((form.travel_input % form.speed_input_2) / form.speed_input_2) * 60 || 0) }} min</p>
+                  <p class="result_answer" id="time_2">{{ Math.floor(form.travel_input / form.speed_input_2 || 0) }} h
+                    {{ Math.floor(((form.travel_input % form.speed_input_2) / form.speed_input_2) * 60 || 0) }} min</p>
                 </div>
               </div>
               <div class="full">
@@ -74,7 +83,8 @@
                   <p class="result_text">Bensankulutus</p>
                 </div>
                 <div class="half">
-                  <p class="result_answer" id="results_2">{{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_2))).toFixed(2) }} l</p>
+                  <p class="result_answer" id="results_2">
+                    {{ (form.travel_input / 100 * (form.gas_button * 1.009 ** (form.speed_input_2))).toFixed(2) }} l</p>
                 </div>
               </div>
             </div>
@@ -87,6 +97,8 @@
 </template>
 
 <script>
+let animationTimer = false;
+
 export default {
   name: 'OispaBensaa',
   props: {
@@ -104,14 +116,15 @@ export default {
   },
   methods: {
     onChange(event) {
-      if(document.getElementById('car')) {
+      if (document.getElementById('car')) {
         document.getElementById('car').remove();
         document.getElementById('remove-style').remove();
       }
-      if(document.getElementById('stop')) {
+      if (document.getElementById('stop')) {
         document.getElementById('stop').remove();
         document.getElementById('remove-cat-style').remove();
       }
+      window.clearTimeout(animationTimer)
       var results_1 = parseFloat(document.getElementById("results_1").innerText);
       var results_2 = parseFloat(document.getElementById("results_2").innerText);
       var speed_1 = parseFloat(document.getElementById("speed_input_1").value);
@@ -153,16 +166,16 @@ export default {
       var style2 = document.createElement('style');
       style2.id = "remove-cat-style";
       style2.innerHTML =
-          "#stop_img { position: absolute;top: 780px;-webkit-animation: linear;-webkit-animation-name: run2;-webkit-animation-duration: 8s;}"+
-          "@-webkit-keyframes run2 {"+
-          "0% {right: 0;} 15% {right: calc(20% - 100px);}"+
-          "48% {right: calc(20% - 100px);} 50% {right: calc(20% - 100px);}"+
-          "55%{right: calc(30% - 100px);}"+
+          "#stop_img { position: absolute;top: 780px;-webkit-animation: linear;-webkit-animation-name: run2;-webkit-animation-duration: 8s;}" +
+          "@-webkit-keyframes run2 {" +
+          "0% {right: 0;} 15% {right: calc(20% - 100px);}" +
+          "48% {right: calc(20% - 100px);} 50% {right: calc(20% - 100px);}" +
+          "55%{right: calc(30% - 100px);}" +
           "100% {right: 110%;} };"
 
       var ref2 = document.querySelector('script');
 
-      if( speed_1 > 0 && speed_2 > 0 && results_1 < results_2) {
+      if (speed_1 > 0 && speed_2 > 0 && results_1 < results_2) {
         document.getElementById("results_1").style.color = "#c9263f";
         document.getElementById("results_2").style.color = "black";
         document.getElementById("time_1").style.color = "black";
@@ -172,7 +185,7 @@ export default {
         document.getElementById("time").style.display = "block";
         document.getElementById("nan").style.display = "none";
 
-        if(speed_1 > 120 || speed_2 > 120){
+        if (speed_1 > 120 || speed_2 > 120) {
           document.getElementById('here2').appendChild(div2);
           document.getElementById('stop').appendChild(img2);
           ref2.parentNode.insertBefore(style2, ref2);
@@ -182,17 +195,17 @@ export default {
 
         document.getElementById('car').appendChild(img);
         ref.parentNode.insertBefore(style, ref);
-        setTimeout(function(){
-          if(document.getElementById('car')) {
+        animationTimer = setTimeout(function () {
+          if (document.getElementById('car')) {
             document.getElementById('car').remove();
             document.getElementById('remove-style').remove();
           }
-          if(document.getElementById('stop')) {
+          if (document.getElementById('stop')) {
             document.getElementById('stop').remove();
             document.getElementById('remove-cat-style').remove();
           }
-        },8000);
-      }else if ( speed_1 > 0 && speed_2 > 0 && results_1 > results_2){
+        }, 8000);
+      } else if (speed_1 > 0 && speed_2 > 0 && results_1 > results_2) {
         document.getElementById("results_1").style.color = "black";
         document.getElementById("results_2").style.color = "#c9263f";
         document.getElementById("time_1").style.color = "#c9263f";
@@ -202,7 +215,7 @@ export default {
         document.getElementById("time").style.display = "none";
         document.getElementById("nan").style.display = "none";
 
-        if(speed_1 > 120 || speed_2 > 120){
+        if (speed_1 > 120 || speed_2 > 120) {
           document.getElementById('here2').appendChild(div2);
           document.getElementById('stop').appendChild(img2);
           ref2.parentNode.insertBefore(style2, ref2);
@@ -211,16 +224,16 @@ export default {
         document.getElementById('here').appendChild(div);
         document.getElementById('car').appendChild(img);
         ref.parentNode.insertBefore(style, ref);
-        setTimeout(function(){
-          if(document.getElementById('car')) {
+        animationTimer = setTimeout(function () {
+          if (document.getElementById('car')) {
             document.getElementById('car').remove();
             document.getElementById('remove-style').remove();
           }
-          if(document.getElementById('stop')) {
+          if (document.getElementById('stop')) {
             document.getElementById('stop').remove();
             document.getElementById('remove-cat-style').remove();
           }
-        },8000);
+        }, 8000);
       } else {
         document.getElementById("results_1").style.color = "black";
         document.getElementById("results_2").style.color = "black";
@@ -266,7 +279,7 @@ h3 {
 
 }
 
-#cash, #time, #nan{
+#cash, #time, #nan {
   display: none;
   margin-top: 60px;
   margin-left: auto;
@@ -274,12 +287,14 @@ h3 {
   max-width: 200px;
   height: auto;
 }
+
 @media (max-width: 600px) {
   #cash, #time, #nan {
-  max-width: 100px;
+    max-width: 100px;
   }
 }
-#nan{
+
+#nan {
   display: block;
 }
 
@@ -306,34 +321,37 @@ h1 {
   flex-direction: row;
   margin: 0 auto;
 }
-.results{
+
+.results {
   display: flex;
   flex-wrap: wrap;
 }
 
-.result_text{
+.result_text {
   font-size: 16px;
   text-align: left;
   font-weight: bold;
   color: #c9263f;
 }
 
-@media(min-width: 600px){
+@media (min-width: 600px) {
   .result_answer {
     padding-top: 12px;
   }
 }
 
-.result_answer{
+.result_answer {
   font-size: 20px;
   text-align: left;
   margin: 0;
 }
-.full{
+
+.full {
   flex-direction: row;
   display: flex;
   width: 100%;
 }
+
 .third {
   width: 33%;
 }
@@ -341,10 +359,12 @@ h1 {
 .half {
   width: 50%;
 }
+
 @media (max-width: 500px) {
-  .full{
+  .full {
     flex-direction: column;
   }
+
   .half {
     width: 100%;
   }
@@ -373,7 +393,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .number-input button {
-  outline:none;
+  outline: none;
   -webkit-appearance: none;
   background-color: transparent;
   border: none;
