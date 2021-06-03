@@ -1,7 +1,7 @@
 # oispa_bensaa
 
 ## Kuvaus
-Projekti on pystyssä osoitteessa: https://oispabensaa.takiainen.fi/. Ideana on autoilumittari, joka vertailee polttoaineenkulutuksia ja nopeuksia tietyn matkan aikana kahdella eri nopeudella. Sivua on koristeltu muutamalla eri animaatiolla, jotka tulevat esiin kun tietyt ehdot kohtaavat.
+Projekti on pystyssä osoitteessa: https://oispabensaa.takiainen.fi/. Ideana on autoilumittari, joka vertailee polttoaineenkulutuksia ja nopeuksia tietyn matkan aikana kahdella eri nopeudella. Sivua on koristeltu muutamalla eri animaatiolla, jotka tulevat esiin kun tietyt ehdot kohtaavat. Muistathan että Suomessa maksimi sallittu nopeus on 120 km/h!
 
 
 ## Projektin pystytys omalla koneella
@@ -21,3 +21,5 @@ Projekti toimi itselleni harjoitusprojektina Vue.js:stä, css-animoinnista, piks
 ## Käytettyjä resursseja
 - Solidabiksen koodihaasteen 2021 kuvia - https://koodihaaste.solidabis.com/#/
 - Jörgen Gröner - Fillingstation Ascii Art - https://ascii.co.uk/art/fillingstation
+
+![Delta ajaa](https://oispabensaa.takiainen.fi/img/Solidabis_car.14e1bd36.png)
